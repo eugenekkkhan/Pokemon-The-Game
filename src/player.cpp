@@ -68,14 +68,12 @@ void Player::Update()
     DrawText(TextFormat("%i", ((int)y+180)/4), 16, 170, 20*2, BLACK);
     DrawText(TextFormat("%i", map1_data[((int)x+480)/4+((int)y+180)/4*map->width]), 16, 201, 20*2, BLACK);
 }
-//296 244
-//288 256
+
 
 void Player::Draw()
 {
     Rectangle dest;
-    // dest.x = (RES_W/2-8)*sm;
-    // dest.y = (RES_H/2-8)*sm;
+
     dest.x = x*sm-camera_x-8*sm;
     dest.y = y*sm-camera_y-8*sm;
     dest.width = 16*sm;
