@@ -28,7 +28,7 @@ void Player::Update()
         x += player.speed*2;
     } else if(map1_data[((int)(x)+480)/4+((int)(y+player.speed*4)+180)/4*map->width] != -1)
     {
-        y -= player.speed*4;
+        y -= player.speed*2;
     } else if(map1_data[((int)(x+player.speed*2)+480)/4+((int)(y)+180)/4*map->width] != -1)
     {
         x -= player.speed*2;
