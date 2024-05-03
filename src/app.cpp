@@ -6,6 +6,7 @@ int main(void)
     while (!WindowShouldClose())
     {
         BeginDrawing();
+
             ClearBackground(WHITE);
             DrawGame();
             UpdateGame();

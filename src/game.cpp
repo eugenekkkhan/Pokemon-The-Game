@@ -6,6 +6,8 @@
 
 Texture2D map_texture;
 Texture2D character;
+Music music;
+float timePlayed = 0.0f;
 
 const Map* map = &maps[0];
 const Map* map2 = &maps[1];
@@ -32,15 +34,20 @@ void InitGame()
     SetTargetFPS(60);
 
     InitWindow(RES_W*scaleMultiplier, RES_H*scaleMultiplier, "Pokemons");
+    InitAudioDevice();
 
     Image image = LoadImage("./assets/pokemon_tileset_from_public_tiles_by_chaoticcherrycake_d5xdb0y.png");
-    Image image2 = LoadImage("./assets/character.png");
-
+    Image image2 = LoadImage("./assets/character.png"); 
+    
     map_texture = LoadTextureFromImage(image);
     character = LoadTextureFromImage(image2);
+    music = LoadMusicStream("./assets/background_music_lavender_town.mp3");
+
+    PlayMusicStream(music);
 
     UnloadImage(image);
     UnloadImage(image2);
+
 
     player.Init();
 
@@ -50,7 +57,8 @@ void UpdateGame()
 {
     
     player.Update();
-
+    UpdateMusicStream(music);
+    
     camera_x = (player.x - RES_W / 2)*4;
     camera_y = (player.y - RES_H / 2)*4;
 
@@ -147,12 +155,14 @@ void DrawGame()
 
     // const char* text1 = (char*)camera_x;
     DrawText(TextFormat("%f", player.x), 16, 16, 20*2, BLACK);
-    DrawText(TextFormat("%f", camera_x), 16, 40, 20*2, BLACK);
+    DrawText(TextFormat("%f", player.y), 16, 40, 20*2, BLACK);
 }
 
 void QuitGame()
 {
     UnloadTexture(map_texture);
     UnloadTexture(character);
+    UnloadMusicStream(music);  
+    CloseAudioDevice();
     CloseWindow();
 }

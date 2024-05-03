@@ -20,7 +20,7 @@ void Player::Init()
 
 void Player::Update()
 {
-    if (map1_data[((int)(x)+480)/4+((int)(y-player.speed*2)+180)/4*map->width] != -1) 
+    if (map1_data[((int)(x)+480)/4+((int)(y-player.speed)+180)/4*map->width] != -1) 
     {
         y += player.speed*2;
     } else if(map1_data[((int)(x-player.speed*2)+480)/4+((int)(y)+180)/4*map->width] != -1)
@@ -35,7 +35,7 @@ void Player::Update()
     } else {
         if (IsKeyDown(KEY_LEFT_SHIFT))
         {
-            player.speed = 0.7;
+            player.speed = 0.75;
         } else {
             player.speed = 0.5;
         }

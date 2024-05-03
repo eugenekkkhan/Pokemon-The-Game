@@ -3,8 +3,8 @@
 
 #include "player.h"
 
-#define RES_W 160
-#define RES_H 144
+#define RES_W 192*2
+#define RES_H 108*2
 
 struct Map {
     const int* tiles;
@@ -18,6 +18,7 @@ extern Player player;
 
 extern Texture2D character;
 extern Texture2D map_texture;
+extern Music music;
 extern const Map* map;
 
 void InitGame();
