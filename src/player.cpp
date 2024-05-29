@@ -1,6 +1,7 @@
 #include "player.h"
 #include "game.h"
 #include "mathh.h"
+#include "raylib.h"
 #include "raymath.h"
 #include "../assets/map.h"
 
@@ -20,53 +21,80 @@ void Player::Init()
 
 void Player::Update()
 {
-    if (map1_data[((int)(x)+480)/4+((int)(y-player.speed*2)+180)/4*map->width] != -1) 
+    if (map1_data[((int)(x)+480)/4+((int)(y-player.speed)+180)/4*map->width] != -1) 
     {
-        y += player.speed*2;
+        y += player.speed;
     } else if(map1_data[((int)(x-player.speed*2)+480)/4+((int)(y)+180)/4*map->width] != -1)
     {
-        x += player.speed*2;
+        x += player.speed;
     } else if(map1_data[((int)(x)+480)/4+((int)(y+player.speed*4)+180)/4*map->width] != -1)
     {
-        y -= player.speed*2;
+        y -= player.speed;
     } else if(map1_data[((int)(x+player.speed*2)+480)/4+((int)(y)+180)/4*map->width] != -1)
     {
-        x -= player.speed*2;
+        x -= player.speed;
     } else {
         if (IsKeyDown(KEY_LEFT_SHIFT))
         {
-            player.speed = 0.7;
+            player.speed = 0.75;
         } else {
             player.speed = 0.5;
         }
         if (IsKeyDown(KEY_A))
         {
             
-            DrawText("A", 16, 100, 20*2, BLACK);
-            x -= player.speed;
+            // DrawText("A", 16, 100, 20*2, BLACK);
+
             src.x = 48;
-        } else if (IsKeyDown(KEY_W))
+            
+            if (IsKeyDown(KEY_S))
+            {
+                y += player.speed;
+                x -= player.speed;
+            } else if (IsKeyDown(KEY_W))
+            {
+                y -= player.speed;
+                x -= player.speed;
+            } else {
+                x -= player.speed;
+            }
+        } else if (IsKeyDown(KEY_D))
         {
-            DrawText("W", 16, 100, 20*2, BLACK);
+            // DrawText("D", 16, 100, 20*2, BLACK);
+            
+            src.x = 32;
+            
+            if (IsKeyDown(KEY_S))
+            {
+                y += player.speed;
+                x += player.speed;
+            } else if (IsKeyDown(KEY_W))
+            {
+                y -= player.speed;
+                x += player.speed;
+            } else {
+                x += player.speed;
+            }
+        } else if (IsKeyDown(KEY_S))
+        {
+            // DrawText("S", 16, 100, 20*2, BLACK);
+            y += player.speed;
+            src.x = 0;
+        } else 
+        if (IsKeyDown(KEY_W))
+        {
+            // DrawText("W", 16, 100, 20*2, BLACK);
             y -= player.speed;
             src.x = 16;
 
-        } else if (IsKeyDown(KEY_S))
-        {
-            DrawText("S", 16, 100, 20*2, BLACK);
-            y += player.speed;
-            src.x = 0;
-        } else if (IsKeyDown(KEY_D))
-        {
-            DrawText("D", 16, 100, 20*2, BLACK);
-            x += player.speed;
-            src.x = 32;
         }
     }
 
-    DrawText(TextFormat("%i", ((int)x+480)/4), 16, 131, 20*2, BLACK);
-    DrawText(TextFormat("%i", ((int)y+180)/4), 16, 170, 20*2, BLACK);
-    DrawText(TextFormat("%i", map1_data[((int)x+480)/4+((int)y+180)/4*map->width]), 16, 201, 20*2, BLACK);
+    
+
+    // DrawText(TextFormat("%i", ((int)x+480)/4), 16, 131, 20*2, BLACK);
+    // DrawText(TextFormat("%i", ((int)y+180)/4), 16, 170, 20*2, BLACK);
+    // DrawText(TextFormat("%i", map1_data[((int)x+480)/4+((int)y+180)/4*map->width]), 16, 201, 20*2, BLACK);
 }
 
 
