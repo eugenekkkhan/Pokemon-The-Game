@@ -1,9 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "pokemon.h"
 #include "raylib.h"
 
-struct Player {
+struct Player 
+{
     float x;
     float y;
     float speed = 0.5;
