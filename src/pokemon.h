@@ -21,7 +21,6 @@ using namespace std;
 // GRA  1/2  1/2   2    1   1/2   2    1   1/4
 // 
 // 
- 
 
 enum class BasicPokemonType
 {
@@ -38,16 +37,6 @@ enum class BasicPokemonType
 struct TypePokemon 
 {
 	BasicPokemonType type_pokemon;
-	double MatrixPokemons[8][8] = {
-        { 0.5,   1,   0.5,   1,    1,    1,    1,    1   },   
-        {  2,   0.5,   1,    1,    1,   0.5,   1,    2   }, 
-        {  2,    1,    1,    1,    1,    1,   0.5,  0.5  },
-        {  1,    1,    1,    1,    1,    1,    1,    1   },
-        {  1,    1,    1,    1,    1,    1,   0.5,   2   }, 
-        {  1,    2,    1,    1,   0.5,  0.5,  0.5,  0.5  },
-        {  1,    1,    2,    1,    1,    2,    1,   0.5  },
-        { 0.5,  0.5,   2,    1,   0.5,   2,    1,   0.25  }
-    };
 
 	TypePokemon(BasicPokemonType basic_type):type_pokemon(basic_type)
 	{}
@@ -61,17 +50,20 @@ struct Pokemon
 	string name_pokemon="";
 	int health = 0;
 	int max_health = 0;
+    int min_health = 0;
 	int atk = 0;
     int def = 0;
     int sp_atk = 0;
     int sp_def = 0;
     int speed = 0;
+    int max_stamina = 0;
+    int min_stamina = 0;
     int stamina = 0;
     int stamina_atk_usage = 0;
     int stamina_sp_atk_usage = 0;
     float regeneration_coefficient = 0;
 
-    bool regen_wasnt_used = true;
+    bool regen_left = 1;
 	bool live = true;
 	
 	TypePokemon type_pokemon = BasicPokemonType::NORMAL;

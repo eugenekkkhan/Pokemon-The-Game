@@ -45,5 +45,6 @@
             "binaryPath": "/Users/eugene/CPP files/template for pokemons raylib/bin/build_osx",
             "binaryArgs": []
         }
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "disabled"
 }
