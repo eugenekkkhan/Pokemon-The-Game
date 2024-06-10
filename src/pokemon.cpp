@@ -19,4 +19,5 @@ Pokemon::Pokemon(string name_pokemon, int health, int atk, int def,
     stamina_sp_atk_usage(stamina_sp_atk_usage), regeneration_coefficient(regeneration_coefficient)
 {
 	this->max_health = health;
+    this->max_stamina = stamina;
 }

@@ -1,12 +1,10 @@
 #include "player.h"
 #include "game.h"
-#include "mathh.h"
 #include "raylib.h"
 #include "raymath.h"
 #include "../assets/map.h"
 
 const int sm = 4;
-int Value = maps[0].height;
 
 void Player::Init()
 {
