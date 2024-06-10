@@ -50,14 +50,12 @@ struct Pokemon
 	string name_pokemon="";
 	int health = 0;
 	int max_health = 0;
-    int min_health = 0;
 	int atk = 0;
     int def = 0;
     int sp_atk = 0;
     int sp_def = 0;
     int speed = 0;
     int max_stamina = 0;
-    int min_stamina = 0;
     int stamina = 0;
     int stamina_atk_usage = 0;
     int stamina_sp_atk_usage = 0;

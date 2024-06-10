@@ -1,6 +1,5 @@
 #include "raylib.h"
 #include "raymath.h"
-#include "mathh.h"
 #include "game.h"
 #include "pokemon.h"
 #include "text.h"
@@ -11,91 +10,6 @@
 #include <fstream>
 
 using namespace std;
-
-vector <struct Pokemon> Pokemons;
-FightParticipant Player1;
-FightParticipant Player2;
-
-Pokemon YourPokemon;
-Pokemon EnemyPokemon;
-
-FightParticipant* currentPlayer;
-FightParticipant* enemyOfCurrentPlayer;
-int* currentPokemonIndex;
-int* enemyOfCurrentPokemonIndex;
-
-// const char* pokemons[] = {
-//     "bulbasaur",
-//     "caterpie",
-//     "charmander",
-//     "eevee",
-//     "jigglypuff",
-//     "pidgey",
-//     "pikachu",
-//     "rattata",
-//     "spearow",
-//     "squirtle"
-// };
-
-const char* pathToPokemons = "./assets/pokemons/";
-const char* pathToPokemonsSounds = "./assets/sounds/";
-
-string paths = "";
-
-// текстуры
-Texture2D map_texture;
-Texture2D character;
-Texture2D opponent;
-Texture2D PokemonsFront[10];
-Texture2D PokemonsBack[10];
-Texture2D enter;
-Texture2D arrow;
-Texture2D buttonE;
-Texture2D buttonH;
-Texture2D buttonA;
-Texture2D buttonF;
-Texture2D buttonD;
-Texture2D buttonW;
-Texture2D buttonS;
-
-Texture2D healthBar;
-Texture2D healthBarActive;
-Texture2D healthBarEnemy;
-Texture2D healthBarEnemyActive;
-Texture2D deadSkull;
-
-Texture2D fightOverlay;
-Texture2D helpOverlay;
-
-// музыка
-Music music;
-float timePlayed = 0.0f;
-
-vector <struct Sound> PokemonsSound;
-
-bool isQuest = 0;
-bool isHelp = 0;
-bool isFight = 0;
-bool isInitFirstStep = 1;
-bool entry = 0;
-bool entry2 = 0;
-bool isChangingPokemon = 0;
-bool initPokemons = 0;
-bool gotTime = 0;
-bool flagPVP;
-
-bool whatPlayerChoosesPokemon = 0; // 0 - first player choosing pokemon, 1 - second player choosing pokemon
-
-
-int currentPokemonIndex1 = 0;
-int currentPokemonIndex2 = 0;
-int currentTile; // текущий тайл, на котором стоит игрок
-int currentChoice = 0; // выбор покемона
-int currentChangeChoice = 0; // выбор покемона при его смене
-int activeColorFrame = 0;
-int actionChoice = 0; // выбор действия покемона
-bool whoGoes = false; // 0 - first player goes, 1 - second player goes
-double timeGap = 0;
 
 const Map* map = &maps[0];
 const Map* map2 = &maps[1];
@@ -140,8 +54,8 @@ void InitFile(vector <struct Pokemon>& PokemonsArray) {
 
     if (in.is_open())
     {
-        // Pokemon  | Type  | HP | Atk | Def  | Sp. Atk | Sp. Def | Speed | Stamina | Stamina Atk | Stamina Sp. Atk | Regeneration | 
-        // squirtle | WATER | 44 | 48  | 65   | 50      | 64      | 43    | 90      | 15          | 30              | 1/16         |
+        // Pokemon  | HP | Atk | Def  | Sp. Atk | Sp. Def | Speed | Stamina | Stamina Atk | Stamina Sp. Atk | Regeneration |  Type   |
+        // squirtle | 44 | 48  | 65   | 50      | 64      | 43    | 90      | 15          | 30              | 1/16         |  WATER  |
         string name;
         int health;
         int atk;
@@ -1354,7 +1268,7 @@ void DrawGame()
                             whoGoes = !whoGoes;
                         } else
                         {
-                            if (expectedHealthOfEnemyACA >= 0)
+                            if (expectedStaminaOfEnemyACA >= 0)
                                 actionChoice = 0;
                             if (expectedStaminaOfEnemyASA >= 0)
                                 actionChoice = 1;
